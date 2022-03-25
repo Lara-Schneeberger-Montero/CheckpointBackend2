@@ -4,14 +4,14 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: animal-service
-          uri: lb://animal-service
+        - id: movie-service
+          uri: lb://movie-service
           predicates:
-            - Path=/animal-service/**
-        - id: specie-service
-          uri: lb://specie-service
+            - Path=/movies/**
+        - id: catalog-service
+          uri: lb://catalog-service
           predicates:
-            - Path=/specie-service/**
+            - Path=/catalog/**
       discovery:
         locator:
           enabled: true
