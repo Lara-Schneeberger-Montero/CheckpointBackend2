@@ -7,12 +7,8 @@ spring:
     username: root
     password: 27042001
   jpa:
-    defer-datasource-initialization: true
     hibernate:
       ddl-auto: create-drop
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
   
   sql:
