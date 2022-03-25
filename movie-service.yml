@@ -1,6 +1,5 @@
-
 server:
-  port: 8099
+  port : 8085
 spring:
   jpa:
     hibernate:
@@ -10,13 +9,16 @@ spring:
         dialect: org.hibernate.dialect.MySQL5Dialect
     show-sql: true
   datasource:
-    url: jdbc:mysql://localhost:3306/movie
+    url: jdbc:mysql://localhost:3306/bank
     username: root
     password: 27042001
+  application:
+    name: movieservice
+
 eureka:
+  instance:
+    hostname: localhost
+    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-      fetchRegistry: true
-      registerWithEureka: true
-    
