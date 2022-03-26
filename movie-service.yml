@@ -8,9 +8,9 @@ spring:
       show-sql: true
        ddl-auto: update
     datasource:
-       url: jdbc:mysql://localhost:3306/movie;
-       username: root
-       password: 27042001
+      url: jdbc:mysql://localhost:3306/movie;
+      username: root
+      password: 27042001
 
   sql:
     init:
