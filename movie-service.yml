@@ -1,28 +1,24 @@
 server:
-  port : 8085
+  port : 8097
 spring:
-  jpa:
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.MySQL5Dialect
-      show-sql: true
-       ddl-auto: update
-    datasource:
-      url: jdbc:mysql://localhost:3306/movie;
-      username: root
-      password: 27042001
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/baseBackFinal
+  zipkin:
+    base-url: http://localhost:9411/
+    enabled: true
 
-  sql:
-    init:
-      dataLocations: classPath:/movie-service.sql  
-  application:
-    name: movieservice
+  rabbitmq:
+    username: guest
+    password: guest
+    host: localhost
+    port: 5672
 
-
+queue:
+  movie:
+    name: movieQueue
+    
+eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-    fetchRegistry: true
-    registerWithEureka: true
-  instance:
-    preferIpAddress: true    
+      defaultZone: http://localhost:8761/eureka/
