@@ -4,6 +4,10 @@ server:
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enable: false
+          lower-case-service-id: true
       routes:
         - id: movie-service
           uri: lb://movie-service
@@ -20,10 +24,7 @@ spring:
           predicates:
             - Path=/catalog-service/**
 
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
+     
       default-filters:
         - AddRequestHeader=user-request-header, custom-user-request-header
         - AddResponseHeader=user-response-header, custom-user-response-header
