@@ -2,13 +2,21 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
   endpoint:
     health:
       enabled: true
       show-details: always
     shutdown:
       enabled: true
-  info:
-    env:
+info:
+  env:
+    enabled: true
+
+spring:
+  data:
+    zipkin:
+      baseUrl: http://localhost:9411/
       enabled: true
+      sender:
+        type: rabbit
