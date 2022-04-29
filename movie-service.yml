@@ -8,17 +8,46 @@ spring:
     base-url: http://localhost:9411/
     enabled: true
 
-  rabbitmq:
+ rabbitmq:
     username: guest
     password: guest
     host: localhost
     port: 5672
+    exchange: rabbitmq.exchange
+    routingkey: rabbitmq.routingkey
 
-queue:
-  movie:
-    name: movieQueue
-    
+rabbitmq:
+  queue:
+    movie:
+      name: movieQueue
+  exchange: exchange
+  routingkey: routingkey
+
 eureka:
   client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      movies:
+        allowHealthIndicatorToFail: false
+        registerHealthIndicator: true
+        slidingWindowType: COUNT_BASED
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 15000
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+
+  retry:
+    instances:
+      movies:
+        maxAttempts: 3
+        waitDuration: 1000
+        retryExceptions:
+#          - feign.FeignException$InternalServerError
+          - java.lang.Exception
